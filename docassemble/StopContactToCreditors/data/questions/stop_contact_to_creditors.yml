@@ -58,7 +58,7 @@ code: |
  
   users.gather()
   set_parts(subtitle=str(users))
-  account_number
+  account_number=account1_number
   reason_for_dispute
   set_progress(20)
   signature_date
@@ -101,9 +101,9 @@ subquestion: |
   Before you get started, please gather:
   
   1. Debt Collection Agency Name
-  1. Debt Collector's Address
-  1. Your Account information
-  1. Creditor Name
+  2. Debt Collector's Address
+  3. Your Account information with your Creditor
+  4. Creditor Name
   
   
   
@@ -114,22 +114,23 @@ subquestion: |
   
   Most people take about 2 minutes to finish this interview.
 ---
-id: Account Information
+id: Creditor Information
 question: |
   Account Information
 subquestion: |
   Information about your account with the Creditor
 fields:
-  - "Account Number": account_number
-    maxlength: 32
   - "Creditor Name": other1_parties
     maxlength: 32
-  - "Your Account Number with the Creditor": creditor_account_number
+  - "Your Account Number": creditor_account_number
     maxlength: 32
-  - "Debt Collection Agency Name": debt2_collectors
+  - note: |
+      Information about your Creditors Account with the Debtor Collection Agency
+  - "Agency Name": debt2_collectors
     maxlength: 22
-  - "Account number with Debt Collection Agency": account1_number
+  - "Account number": account1_number
     maxlength: 16
+
 ---
 id: Status of the Debt
 question: |
@@ -346,7 +347,7 @@ attachment:
       - "debt_collectors": ${ debt_collectors }
       - "debt_collectors_address_line_one": ${ debt_collectors[0].address.line_one() }
       - "debt_collectors_address_line_two": ${ debt_collectors[0].address.line_two() }
-      - "account_number": ${ account_number }
+      - "account_number": ${ account1_number }
       - "other_parties": ${ other_parties }
       - "other1_parties": ${ other1_parties }
       - "creditor_account_number": ${ creditor_account_number }
